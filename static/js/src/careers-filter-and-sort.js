@@ -11,7 +11,7 @@
   var filterBy = {};
 
   function init() {
-    var queryFilter = urlParams.get('filter');
+    var queryFilter = urlParams.get("filter");
 
     revealFilters();
 
@@ -25,7 +25,9 @@
 
         if (queryFilter) {
           filterSelect.options.selectedIndex = filters.indexOf(queryFilter);
-          updateFilterBy(filterSelect.options[filterSelect.options.selectedIndex].value);
+          updateFilterBy(
+            filterSelect.options[filterSelect.options.selectedIndex].value
+          );
           filterJobs(filterBy, jobList);
           updateNoResultsMessage();
         }
@@ -34,7 +36,9 @@
           if (!(sortSelect.options.selectedIndex === 0)) {
             sortSelect.options.selectedIndex = 0;
           }
-          updateFilterBy(filterSelect.options[filterSelect.options.selectedIndex].value);
+          updateFilterBy(
+            filterSelect.options[filterSelect.options.selectedIndex].value
+          );
           filterJobs(filterBy, jobList);
           updateURL(filterBy);
           updateNoResultsMessage();
@@ -43,13 +47,19 @@
 
       if (sortSelect) {
         sortSelect.addEventListener("change", function (e) {
-          jobList.sort((a, b) => a.dataset[sortSelect.value] !== b.dataset[sortSelect.value] ? a.dataset[sortSelect.value] < b.dataset[sortSelect.value] ? -1 : 1 : 0);
+          jobList.sort((a, b) =>
+            a.dataset[sortSelect.value] !== b.dataset[sortSelect.value]
+              ? a.dataset[sortSelect.value] < b.dataset[sortSelect.value]
+                ? -1
+                : 1
+              : 0
+          );
           if (sortSelect.value === "date") {
             jobList.reverse();
           }
           // Create new DOM list
           const sortedDomList = document.createDocumentFragment();
-          jobList.forEach(el => {
+          jobList.forEach((el) => {
             sortedDomList.appendChild(el);
           });
           // Empty the DOM
@@ -60,8 +70,6 @@
         });
       }
     }
-
-
   }
 
   // Show filters if JS is available
@@ -145,9 +153,9 @@
   function updateURL(filterBy) {
     var baseURL = window.location.origin + window.location.pathname;
 
-    urlParams.set('filter', filterBy.filterValue);
+    urlParams.set("filter", filterBy.filterValue);
 
-    var url = baseURL + '?' + urlParams.toString() + '#available-roles';
+    var url = baseURL + "?" + urlParams.toString() + "#available-roles";
 
     window.history.pushState({}, "", url);
   }
