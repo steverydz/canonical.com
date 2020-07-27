@@ -3,5 +3,6 @@ module.exports = {
   "apply-for-jobs": ["./static/js/src/apply-for-jobs.js"],
   "file-validation": ["./static/js/src/file-validation.js"],
   "careers-game": ["./static/js/src/careers-game.js"],
+  "find-a-partner": ["./static/find-a-partner.js"],
   tabs: ["./static/js/src/tabs.js"],
 };
